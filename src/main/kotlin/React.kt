@@ -5,22 +5,21 @@ class Reactor<T>() {
         fun cancel()
     }
 
-    class Input<T>(public var value: T) {
+    interface Cell<T> {
+        var value: T
+    }
+
+    inner class InputCell<T>(override public var value: T): Cell<T> {
 
     }
 
-    class ValueOutput<T>(val value1: T, val value2: T) {
-        var value: T = value1
+    inner class ComputeCell<T>(vararg var inputs: Cell<T>, var lambda: (List<T>) -> (T)): Cell<T> {
+
+        override var value: T = inputs[0].value
+
+        init {
+
+        }
     }
-
-    class CellOutput<T>(var input: Input<T>) {
-        var value: T = input.value
-    }
-
-    fun InputCell(value: T) : Input<T> = Input(value)
-
-    fun ComputeCell(value1: T, value2: T) : ValueOutput<T> = ValueOutput(value1, value2)
-
-    fun ComputeCell(input: Input<T>) : CellOutput<T> = CellOutput(input)
 }
 

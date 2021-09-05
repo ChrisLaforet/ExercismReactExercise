@@ -21,25 +21,24 @@ class ReactTest {
         assertEquals(20, input.value)
     }
 
-//    @Ignore
-//    @Test
-//    fun computeCellsCalculateInitialValue() {
-//        val reactor = Reactor<Int>()
-//        val input = reactor.InputCell(1)
-//        val output = reactor.ComputeCell(input) { it[0] + 1 }
-//        assertEquals(2, output.value)
-//    }
-//
-//    @Ignore
-//    @Test
-//    fun computeCellsTakeInputsInTheRightOrder() {
-//        val reactor = Reactor<Int>()
-//        val one = reactor.InputCell(1)
-//        val two = reactor.InputCell(2)
-//        val output = reactor.ComputeCell(one, two) { (x, y) -> x + y * 10 }
-//        assertEquals(21, output.value)
-//    }
-//
+    @Test
+    fun computeCellsCalculateInitialValue() {
+        val reactor = Reactor<Int>()
+        val input = reactor.InputCell(1)
+        val output = reactor.ComputeCell(input) { it[0] + 1 }
+        assertEquals(2, output.value)
+    }
+
+    @Ignore
+    @Test
+    fun computeCellsTakeInputsInTheRightOrder() {
+        val reactor = Reactor<Int>()
+        val one = reactor.InputCell(1)
+        val two = reactor.InputCell(2)
+        val output = reactor.ComputeCell(one, two) { (x, y) -> x + y * 10 }
+        assertEquals(21, output.value)
+    }
+
 //    @Ignore
 //    @Test
 //    fun computeCellsUpdateValueWhenDependenciesAreChanged() {
