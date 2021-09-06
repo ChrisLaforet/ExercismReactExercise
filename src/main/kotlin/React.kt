@@ -23,8 +23,14 @@ class Reactor<T>() {
         fun changed()
     }
 
-    inner class InputCell<T>(override public var value: T): Cell<T>() {
+    inner class InputCell<T>(var initialValue: T): Cell<T>() {
 
+        override var value: T = initialValue
+        set (value) {
+            field = value
+
+            onChange()
+        }
     }
 
     inner class ComputeCell<T>(vararg var inputs: Cell<T>, var lambda: (List<T>) -> (T)): Cell<T>(), Observer {
@@ -37,13 +43,13 @@ class Reactor<T>() {
             compute()
         }
 
-X
         private fun compute() {
             value = lambda(inputs.map { it.value })
         }
 
         override fun changed() {
-            TODO("Not yet implemented")
+            compute()
+            onChange()
         }
     }
 }

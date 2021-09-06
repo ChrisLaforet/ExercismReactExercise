@@ -29,7 +29,6 @@ class ReactTest {
         assertEquals(2, output.value)
     }
 
-    @Ignore
     @Test
     fun computeCellsTakeInputsInTheRightOrder() {
         val reactor = Reactor<Int>()
@@ -48,20 +47,19 @@ class ReactTest {
         assertEquals(4, output.value)
     }
 
-//    @Ignore
-//    @Test
-//    fun computeCellsCanDependOnOtherComputeCells() {
-//        val reactor = Reactor<Int>()
-//        val input = reactor.InputCell(1)
-//        val timesTwo = reactor.ComputeCell(input) { it[0] * 2 }
-//        val timesThirty = reactor.ComputeCell(input) { it[0] * 30 }
-//        val output = reactor.ComputeCell(timesTwo, timesThirty) { (x, y) -> x + y }
-//
-//        assertEquals(32, output.value)
-//        input.value = 3
-//        assertEquals(96, output.value)
-//    }
-//
+    @Test
+    fun computeCellsCanDependOnOtherComputeCells() {
+        val reactor = Reactor<Int>()
+        val input = reactor.InputCell(1)
+        val timesTwo = reactor.ComputeCell(input) { it[0] * 2 }
+        val timesThirty = reactor.ComputeCell(input) { it[0] * 30 }
+        val output = reactor.ComputeCell(timesTwo, timesThirty) { (x, y) -> x + y }
+
+        assertEquals(32, output.value)
+        input.value = 3
+        assertEquals(96, output.value)
+    }
+
 //    @Ignore
 //    @Test
 //    fun computeCellsFireCallbacks() {
