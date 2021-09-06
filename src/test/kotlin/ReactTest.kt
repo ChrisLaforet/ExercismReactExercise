@@ -39,16 +39,15 @@ class ReactTest {
         assertEquals(21, output.value)
     }
 
-//    @Ignore
-//    @Test
-//    fun computeCellsUpdateValueWhenDependenciesAreChanged() {
-//        val reactor = Reactor<Int>()
-//        val input = reactor.InputCell(1)
-//        val output = reactor.ComputeCell(input) { it[0] + 1 }
-//        input.value = 3
-//        assertEquals(4, output.value)
-//    }
-//
+    @Test
+    fun computeCellsUpdateValueWhenDependenciesAreChanged() {
+        val reactor = Reactor<Int>()
+        val input = reactor.InputCell(1)
+        val output = reactor.ComputeCell(input) { it[0] + 1 }
+        input.value = 3
+        assertEquals(4, output.value)
+    }
+
 //    @Ignore
 //    @Test
 //    fun computeCellsCanDependOnOtherComputeCells() {
